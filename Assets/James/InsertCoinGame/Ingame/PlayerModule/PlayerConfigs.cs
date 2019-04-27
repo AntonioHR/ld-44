@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace James.InsertCoinGame.Ingame.InputModule
 {
-    [CreateAssetMenu(fileName = "InputConfigs", menuName = "InsertCoin/InputConfigs")]
-    public class InputConfigs : ScriptableObject
+    [CreateAssetMenu(fileName = "PlayerConfigs", menuName = "InsertCoin/PlayerConfigs")]
+    public class PlayerConfigs : ScriptableObject
     {
-        public bool useRawAxis = true;
+        public float MoveSpeed = 5;
     }
 }
