@@ -4743,7 +4743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a87ce875a1b614f906519a086f4de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 5
+  force: 0.4
   radius: 4
   notifier: {fileID: 4140234534411646540}
   collider: {fileID: 115279183490878045}

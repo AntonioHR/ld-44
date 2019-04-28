@@ -34,7 +34,7 @@ namespace James.InsertCoinGame.Ingame.Coins
         List<BlackHole> blackHoles = new List<BlackHole>();
         private CheckForObjects<Coin> coinsCheck;
 
-        private void Start()
+        private void Awake()
         {
             coinsCheck = new CheckForObjects<Coin>(otherCoinsTrigger);
             coinsCheck.ObjectEntered += OnHitOtherCoin;
@@ -72,7 +72,7 @@ namespace James.InsertCoinGame.Ingame.Coins
 
             body.AddForce(force, ForceMode.Impulse);
             kicked = true;
-            this.WaitUntilThenDo(() => body.velocity.magnitude < 0.001f, OnKickOver);
+            this.WaitUntilThenDo(() => body.velocity.magnitude < 0.001f, OnKickOver, skipFirstFrame: true, skipMode:CoroutineUtils.SkipMode.FixedUpdate);
             CheckKicks();
         }
 
