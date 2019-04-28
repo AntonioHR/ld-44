@@ -19,7 +19,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         private InsertCoinInput input;
         private PlayerConfigs configs;
 
-        public Vector3 Direction { get; set; }
+        public Vector3 LookDirection { get; set; }
         public bool DirectionLocked { get; set; }
 
         [Inject]
@@ -39,17 +39,21 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         }
         private void Update()
         {
-            if(!DirectionLocked)
-                Direction = input.MovementInIso.normalized;
+            var moveDirection = input.MovementInIso;
+            if (!DirectionLocked)
+            {
+                LookDirection = moveDirection.magnitude > .3f ? moveDirection.normalized : LookDirection;
+            }
+            moveDirection.Normalize();
             Vector3 speed;
             if (canWalk)
             {
-                speed = Direction * configs.MoveSpeed;
+                speed = moveDirection * configs.MoveSpeed;
             } else
             {
                 speed = Vector3.zero;
             }
-            transform.rotation = Quaternion.FromToRotation(Vector3.forward, Direction);
+            transform.rotation = Quaternion.FromToRotation(Vector3.forward, LookDirection);
 
             controller.SimpleMove(speed);
         }

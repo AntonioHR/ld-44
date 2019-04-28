@@ -49,7 +49,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         }
         #region Debug
         [ShowNativeProperty]
-        public int CoinCount { get { return owner.CoinsCount; } }
+        public int CoinCount { get { return owner == null ? 0 : owner.CoinsCount; } }
         #endregion
     }
 }

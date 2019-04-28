@@ -61,8 +61,8 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
             public override void OnKickUp()
             {
                 Body.HideKickUi();
-                Vector3 direction = Body.Movement.Direction;
-                ChangeState(new KickState(Body.Movement.Direction));
+                Vector3 direction = Body.Movement.LookDirection;
+                ChangeState(new KickState(Body.Movement.LookDirection));
             }
         }
         private class KickState : State
