@@ -16,38 +16,27 @@ namespace James.InsertCoinGame.Ingame
     {
         public class Fsm : StateMachine<State, InsertCoinIngameScene>
         {
-            SceneStartState.Factory sceneStartFactory;
+            public override State StartingState => new SceneStartState();
 
-            public Fsm(SceneStartState.Factory sceneStartFactory)
+            internal void OnCoinCollected()
             {
-                this.sceneStartFactory = sceneStartFactory;
+                CurrentState.OnCoinCollected();
             }
-
-            public override State StartingState => sceneStartFactory.Create();
         }
         public abstract class State : State<State, InsertCoinIngameScene>
         {
-
+            public virtual void OnCoinCollected()
+            {
+            }
         }
 
         public class SceneStartState : State
         {
             public const float minDelay = 1;
 
-            //Dependencies
-            private InsertCoinInput input;
-            private InsertCoinUI ui;
-            private IngameState.Factory ingameStateFactory;
             //State
             private bool startedTransition;
             private Stopwatch stopwatch;
-
-            public SceneStartState(InsertCoinInput input, InsertCoinUI ui, IngameState.Factory ingameStateFactory)
-            {
-                this.input = input;
-                this.ui = ui;
-                this.ingameStateFactory = ingameStateFactory;
-            }
 
             protected override void Begin()
             {
@@ -55,7 +44,7 @@ namespace James.InsertCoinGame.Ingame
             }
             protected override void Update()
             {
-                if (!startedTransition && input.PressedStart && stopwatch.ElapsedSeconds > minDelay)
+                if (!startedTransition && Context.input.PressedStart && stopwatch.ElapsedSeconds > minDelay)
                 {
                     StartTransition();
                 }
@@ -64,32 +53,29 @@ namespace James.InsertCoinGame.Ingame
             private void StartTransition()
             {
                 startedTransition = true;
-                ui.HideText(GoToIngame);
+                Context.ui.PerformStartSequence(GoToIngame);
             }
 
             private void GoToIngame()
             {
-                ChangeState(ingameStateFactory.Create());
+                Context.player.OnGameStarted();
+                Context.OnGameStarted();
+                ChangeState(new IngameState());
             }
-
-            public class Factory :  PlaceholderFactory<SceneStartState>{ }
         }
+
         public class IngameState : State
         {
             protected override void Begin()
             {
                 Debug.Log("Started Scene");
             }
-
-            public class Factory : PlaceholderFactory<IngameState> { }
         }
 
 
         public static void BindAllStateFactories(DiContainer container)
         {
             container.Bind<Fsm>().AsTransient();
-            container.BindFactory<SceneStartState, SceneStartState.Factory>();
-            container.BindFactory<IngameState, IngameState.Factory>();
         }
     }
 }

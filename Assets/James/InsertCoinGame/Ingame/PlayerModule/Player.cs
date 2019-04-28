@@ -45,6 +45,11 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         {
             fsm.Update();
         }
+
+        public void OnGameStarted()
+        {
+            fsm.OnGameStarted();
+        }
     }
 
 }

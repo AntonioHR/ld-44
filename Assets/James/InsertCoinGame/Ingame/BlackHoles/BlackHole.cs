@@ -44,9 +44,9 @@ namespace James.InsertCoinGame.Ingame.BlackHoles
             gravityCheck.ObjectEntered += OnCoinEnteredGravity;
             gravityCheck.ObjectLeft += OnCoinLeftGravity;
 
-            //eatCheck = new CheckForObjects<Coin>(eatArea);
-            //eatCheck.ObjectEntered += OnCoinEnteredCore;
-            //eatCheck.ObjectLeft += OnCoinLeftCore;
+            eatCheck = new CheckForObjects<Coin>(eatArea);
+            eatCheck.ObjectEntered += OnCoinEnteredCore;
+            eatCheck.ObjectLeft += OnCoinLeftCore;
 
             ApplyRange();
         }
@@ -57,6 +57,8 @@ namespace James.InsertCoinGame.Ingame.BlackHoles
 
         private void OnCoinEnteredCore(Coin obj)
         {
+            if(obj.CanCollect)
+                obj.Collect(gameScene.CollectCoin);
         }
 
         private void OnCoinLeftGravity(Coin coin)

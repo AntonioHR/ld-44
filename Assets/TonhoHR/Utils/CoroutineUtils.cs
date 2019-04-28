@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TonhoHR.Utils
 {
@@ -42,6 +43,23 @@ namespace TonhoHR.Utils
             }
             yield return new WaitUntil(check);
             callback();
+        }
+
+
+        public static Coroutine AnimateImageOnce(this Image img, Sprite[] sprites, float timePerSprite, Action callback)
+        {
+
+            return img.StartCoroutine(img.DOAnimateImageOnce(sprites, timePerSprite, callback));
+        }
+        public static IEnumerator DOAnimateImageOnce(this Image img, Sprite[] sprites, float timePerSprite, Action callback)
+        {
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                img.sprite = sprites[i];
+                yield return new WaitForSeconds(timePerSprite);
+            }
+            if (callback != null)
+                callback();
         }
     }
 }

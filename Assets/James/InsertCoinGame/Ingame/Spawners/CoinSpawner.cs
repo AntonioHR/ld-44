@@ -42,7 +42,7 @@ namespace James.InsertCoinGame.Ingame.Spawners
         {
             Vector3 impulseDirection = GenerateImpulseDirection();
 
-            Coin c = Instantiate(prefab, coinsParent);
+            Coin c = Instantiate(prefab, coinsParent != null? coinsParent: transform.parent);
             c.transform.position = spawnPoint.position;
             c.KickAbsoulte(impulseDirection * configs.startingKick);
         }

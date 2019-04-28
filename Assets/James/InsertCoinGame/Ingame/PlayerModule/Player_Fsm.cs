@@ -18,7 +18,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
 
         public class Fsm : StateMachine<State, Player>
         {
-            public override State StartingState => new IdleState();
+            public override State StartingState => new PreGameState();
 
             public void OnKickDown()
             {
@@ -27,6 +27,11 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
             public void OnKickUp()
             {
                 CurrentState.OnKickUp();
+            }
+
+            internal void OnGameStarted()
+            {
+                CurrentState.OnGameStarted();
             }
         }
         public abstract class State : State<State, Player>
@@ -44,6 +49,16 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
             {
                 return Body.WaitUntilThenDo(check, callback);
             }
+
+            public virtual void OnGameStarted() { }
+        }
+
+        public class PreGameState : State
+        {
+            public override void OnGameStarted()
+            {
+                ChangeState(new IdleState());
+            }
         }
         public class IdleState : State
         {
@@ -56,6 +71,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
                 ChangeState(new KickPrepareState());
             }
         }
+
         public class KickPrepareState : State
         {
             Stopwatch stopwatch;

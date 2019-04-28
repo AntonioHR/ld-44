@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using James.InsertCoinGame.Ingame.BlackHoles;
 using TonhoHR.ObjectCheckers;
 using TonhoHR.Utils;
@@ -49,11 +50,17 @@ namespace James.InsertCoinGame.Ingame.Coins
         private bool kicked;
         private Vector3 lastKick;
         private bool consumed;
+        private bool collected;
+
         public bool IsMidAir { get { return kicked; } }
         public bool WasConsumed { get { return consumed; } }
         public int UnitCount { get { return units.Count; } }
 
+        public bool CanCollect { get { return !consumed; } }
+
         List<BlackHole> blackHoles = new List<BlackHole>();
+
+
         private CheckForObjects<Coin> coinsCheck;
         [SerializeField]
         private float fallForceAlpha = .7f;
@@ -72,8 +79,8 @@ namespace James.InsertCoinGame.Ingame.Coins
         {
             if (!kicked)
                 SetPull(blackHoles.Aggregate(Vector3.zero, (pull, bh) => pull + bh.GetPullFor(this)));
-
-            DoStackSpeedDisplay();
+            if(!consumed)
+                DoStackSpeedDisplay();
         }
         private void DoStackSpeedDisplay()
         {
@@ -153,6 +160,7 @@ namespace James.InsertCoinGame.Ingame.Coins
         }
         private void AnimateHit()
         {
+            Debug.Assert(!consumed);
             foreach (var unit in units)
             {
                 unit.AnimateHit();
@@ -191,6 +199,22 @@ namespace James.InsertCoinGame.Ingame.Coins
                 if(heightAlpha > 0)
                     newCoin.Kick(direction, heightAlpha * fallForceAlpha);
             }
+        }
+
+
+        public void Collect(TweenCallback callback)
+        {
+            Debug.Assert(!consumed);
+            consumed = true;
+            collected = true;
+            var seq = DOTween.Sequence();
+            foreach (var unit in units)
+            {
+                var collect = unit.AnimateCollect();
+                collect.AppendCallback(callback);
+                seq.Insert(0, collect);
+            }
+            seq.OnComplete(Consume);
         }
     }
 }
