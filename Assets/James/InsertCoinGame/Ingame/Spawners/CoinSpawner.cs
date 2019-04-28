@@ -23,10 +23,10 @@ namespace James.InsertCoinGame.Ingame.Spawners
         private UnityEvent OnSpawn;
 
         private float nextSpawn;
-        
-        public void Start()
+
+        private void OnEnable()
         {
-            nextSpawn = Time.time + configs.interval;
+            nextSpawn = Time.time;
         }
         public void Update()
         {
