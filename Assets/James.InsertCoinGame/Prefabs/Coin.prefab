@@ -251,7 +251,12 @@ MonoBehaviour:
   unitsParent: {fileID: 7636987946887009084}
   unitPrefab: {fileID: 1334477295635691667, guid: b3de2cf07150377459d4dd2088a275bf,
     type: 3}
+  resistanceAtTwo: 13
+  resistanceAtTen: 6
+  coinData: {fileID: 11400000, guid: 0a89270006d358043a3e4ed9270ce8fe, type: 2}
   otherCoinsTrigger: {fileID: 6943834252026902547}
+  breakTime: 0.2
+  fallForceAlpha: 0.7
 --- !u!1001 &3782822232506723539
 PrefabInstance:
   m_ObjectHideFlags: 0

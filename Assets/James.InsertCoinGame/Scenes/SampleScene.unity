@@ -403,6 +403,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &704849767 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1600686488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &709940129 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3659428248799813177, guid: 48636835805fa5045bc25c97fc089111,
@@ -629,6 +635,7 @@ Transform:
   - {fileID: 576753350}
   - {fileID: 285427690}
   - {fileID: 1089316125892279787}
+  - {fileID: 704849767}
   m_Father: {fileID: 799812633}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -694,6 +701,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1600686488
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1351096951}
+    m_Modifications:
+    - target: {fileID: 7420214453968432731, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: m_Name
+      value: CoinSpawner (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.2705973
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.65328336
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.27059847
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.65327984
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 45.000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -270
+      objectReference: {fileID: 0}
+    - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045004848061661547, guid: ac81128201209e24ba1dcd295357c8c2,
+        type: 3}
+      propertyPath: coinsParent
+      value: 
+      objectReference: {fileID: 1351096951}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac81128201209e24ba1dcd295357c8c2, type: 3}
 --- !u!1 &1663219570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,7 +1381,7 @@ PrefabInstance:
     - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3
+      value: 5.3
       objectReference: {fileID: 0}
     - target: {fileID: 1089316125892279787, guid: ac81128201209e24ba1dcd295357c8c2,
         type: 3}

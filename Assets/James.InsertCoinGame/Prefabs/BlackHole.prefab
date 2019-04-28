@@ -4745,11 +4745,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 0.4
   radius: 4
-  notifier: {fileID: 4140234534411646540}
+  gravityArea: {fileID: 4140234534411646540}
+  eatArea: {fileID: 3076069562987521874}
   collider: {fileID: 115279183490878045}
   particleSystems:
   - {fileID: 4433368527578680166}
   - {fileID: 4433368526289074673}
+  DebugCoins: []
 --- !u!1 &4433368527578680171
 GameObject:
   m_ObjectHideFlags: 0
@@ -9461,6 +9463,7 @@ GameObject:
   - component: {fileID: 5510398818126626555}
   - component: {fileID: 5689897304826107748}
   - component: {fileID: 4907415983037138440}
+  - component: {fileID: 3076069562987521874}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -9535,11 +9538,26 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7923489535732284232}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3076069562987521874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7923489535732284232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803dcd24196b947439e19f948665ccc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &8212237648538288792
 GameObject:
   m_ObjectHideFlags: 0

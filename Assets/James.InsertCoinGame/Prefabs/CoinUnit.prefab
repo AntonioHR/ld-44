@@ -76,6 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextRef: {fileID: 350473896583786283}
+  core: {fileID: 7175885274183858349}
+  maxSpeedOffset: {x: 0, y: 0, z: -1}
   animationPunch: 1
   heightDelay: 0.1
   punchTime: 0.5

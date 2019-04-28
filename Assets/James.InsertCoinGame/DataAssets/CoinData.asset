@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c416ab54f21d034dbed2c8e3a16d002, type: 3}
-  m_Name: CoinSpawnPreset
+  m_Script: {fileID: 11500000, guid: 02e8b7c7f3372b0498b2fd794da6de42, type: 3}
+  m_Name: CoinData
   m_EditorClassIdentifier: 
-  interval: 4
-  spawnVector: {x: 0, y: 0, z: 1}
-  startingKick: 5
-  arc: 90
+  coinPrefab: {fileID: 4129813723641324289, guid: 54cdaf3c2d370ce49b001b52bb88dbde,
+    type: 3}

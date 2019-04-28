@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace TonhoHR.ObjectCheckers
 { 
@@ -30,12 +31,13 @@ public class CheckForObjects<T>
     public event Action<T> ObjectEntered;
     public event Action<T> ObjectLeft;
 
+
     private void Notifier_ObjectLeft(GameObject obj)
     {
         if (IsTypeComponent || IsTypeInterface)
         {
             var newObj = obj.GetComponent<T>();
-            if (newObj != null)
+            if (!ReferenceEquals(newObj, null))
             {
                 OnObjectLeft(newObj);
                 return;
@@ -43,7 +45,7 @@ public class CheckForObjects<T>
         }
 
         var proxy = obj.GetComponent<IProxyFor<T>>();
-        if (proxy != null)
+        if (!ReferenceEquals(proxy, null))
         {
             Debug.Assert(proxy.Owner != null);
             OnObjectLeft(proxy.Owner);
