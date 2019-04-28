@@ -32,6 +32,7 @@ namespace James.InsertCoinGame.Ingame.Ui
 
         private void Awake()
         {
+            startCanvasGroup.alpha = 1;
             titleTween = FlashText().SetLoops(-1, LoopType.Yoyo);
         }
 

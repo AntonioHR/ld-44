@@ -23,6 +23,10 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         private KickIndicator kickIndicator;
         [SerializeField]
         private TriggerNotifier kickArea;
+        [SerializeField]
+        private Animator animator;
+
+        public Animator Animator { get { return animator; } }
 
         public Player Owner { get { return owner; } }
         public PlayerMovement Movement { get { return movement; } }

@@ -58,6 +58,7 @@ namespace James.InsertCoinGame.Ingame.Coins
 
         public bool CanCollect { get { return !consumed; } }
 
+
         List<BlackHole> blackHoles = new List<BlackHole>();
 
 

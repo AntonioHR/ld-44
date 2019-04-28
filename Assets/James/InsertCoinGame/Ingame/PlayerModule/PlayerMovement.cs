@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 namespace James.InsertCoinGame.Ingame.PlayerModule
@@ -16,11 +17,38 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         [SerializeField]
         private bool canWalk;
 
+        [SerializeField]
+        private UnityEvent startedMoving;
+        [SerializeField]
+        private UnityEvent stoppedMoving;
+
+
         private InsertCoinInput input;
         private PlayerConfigs configs;
+        private bool isMoving;
+
 
         public Vector3 LookDirection { get; set; }
         public bool DirectionLocked { get; set; }
+        public bool IsMoving
+        {
+            get
+            {
+                return isMoving;
+            }
+            set
+            {
+                if (value == isMoving)
+                    return;
+
+                isMoving = value;
+
+                if (value)
+                    startedMoving.Invoke();
+                else
+                    stoppedMoving.Invoke();
+            }
+        }
 
         [Inject]
         public void Inject(InsertCoinInput input, PlayerConfigs configs)
@@ -53,6 +81,8 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
             {
                 speed = Vector3.zero;
             }
+
+            IsMoving = moveDirection.sqrMagnitude > .01f;
             transform.rotation = Quaternion.FromToRotation(Vector3.forward, LookDirection);
 
             controller.SimpleMove(speed);

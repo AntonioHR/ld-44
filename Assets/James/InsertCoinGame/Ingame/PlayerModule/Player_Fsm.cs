@@ -79,12 +79,17 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
             {
                 stopwatch = Stopwatch.CreateAndStart();
                 Body.Movement.DisableWalk();
+                Body.Animator.SetBool("kick-load", true);
             }
             public override void OnKickUp()
             {
                 Body.KickIndicator.Hide();
                 Vector3 direction = Body.Movement.LookDirection;
                 ChangeState(new KickState(Body.Movement.LookDirection, GetKickForce()));
+            }
+            protected override void End()
+            {
+                Body.Animator.SetBool("kick-load", false);
             }
             protected override void Update()
             {
@@ -132,7 +137,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
 
             private bool CanHit(Coin c)
             {
-                return true;
+                return c != null && !c.WasConsumed;
                 //var kickPos = Body.KickArea.transform.position;
                 //var delta = c.transform.position - kickPos;
                 //if(Physics.Raycast(kickPos,delta, out RaycastHit hit))
