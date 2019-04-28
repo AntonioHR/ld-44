@@ -105,7 +105,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
 
             private void PerformKick()
             {
-                var coins = Context.coinChecker.CurrentObjects;
+                var coins = Context.coinChecker.CurrentObjects.Where(c=>c!= null);
                 foreach (var coin in coins)
                 {
                     coin.Kick(direction, force);
