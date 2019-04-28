@@ -27,7 +27,7 @@ namespace James.InsertCoinGame.Ingame.Coins
                 tween.Kill();
 
             float t = Mathf.InverseLerp(0, totalHeight, myHeight);
-            float totalTime = punchTime + heightDelay * (totalHeight - 1);
+            float totalTime = punchTime + heightDelay / (totalHeight - 1);
             float myDelay = heightDelay * (1 - t);
             float myPunch = (minPunchAlpha+ t * (1-minPunchAlpha)) * animationPunch;
             tween = transform.DOPunchPosition(Vector3.up * myPunch, totalTime - myDelay, 0, 0).SetDelay(myDelay);

@@ -111,6 +111,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
                 {
                     coin.Kick(direction, forceAlpha);
                 }
+                
             }
 
             private bool CanHit(Coin c)
@@ -119,7 +120,11 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
                 var delta = c.transform.position - kickPos;
                 if(Physics.Raycast(kickPos,delta, out RaycastHit hit))
                 {
-                    return hit.collider.GetComponentInParent<Coin>() == c;
+
+                    bool result = hit.collider.GetComponentInParent<Coin>() == c;
+                    if (result)
+                        Debug.LogWarningFormat(hit.collider.gameObject, "Couldn't kick coin. Hit {0} instead", hit.collider);
+                    return result;
                 }
                 return false;
             }
