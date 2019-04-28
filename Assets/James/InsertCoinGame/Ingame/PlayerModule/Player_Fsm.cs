@@ -1,4 +1,5 @@
 ﻿using AntonioHR.Utils;
+using James.InsertCoinGame.Ingame.Coins;
 using James.InsertCoinGame.Ingame.InputModule;
 using System;
 using System.Collections.Generic;
@@ -82,13 +83,13 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         }
         private class KickState : State
         {
-            private float force;
+            private float forceAlpha;
             private Vector3 direction;
 
             public KickState(Vector3 direction, float force)
             {
                 this.direction = direction;
-                this.force = force;
+                this.forceAlpha = force;
             }
 
             protected override void Begin()
@@ -105,11 +106,22 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
 
             private void PerformKick()
             {
-                var coins = Context.coinChecker.CurrentObjects.Where(c=>c!= null);
-                foreach (var coin in coins)
+                var coins = Context.coinChecker.CurrentObjects.Where(c => c != null);
+                foreach (var coin in coins.Where(c=>CanHit(c)))
                 {
-                    coin.Kick(direction, force);
+                    coin.Kick(direction, forceAlpha);
                 }
+            }
+
+            private bool CanHit(Coin c)
+            {
+                var kickPos = Body.KickArea.transform.position;
+                var delta = c.transform.position - kickPos;
+                if(Physics.Raycast(kickPos,delta, out RaycastHit hit))
+                {
+                    return hit.collider.GetComponentInParent<Coin>() == c;
+                }
+                return false;
             }
 
             protected override void End()

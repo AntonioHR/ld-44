@@ -56,12 +56,12 @@ namespace James.InsertCoinGame.Ingame.Coins
             Destroy(gameObject);
         }
 
-        public void Kick(Vector3 direction, float force)
+        public void Kick(Vector3 direction, float forceAlpha)
         {
-            Debug.LogFormat("KickForce: {0}", force);
-            Debug.Assert(force <= 1 && force >= 0);
+            Debug.LogFormat("KickForce: {0}", forceAlpha);
+            Debug.Assert(forceAlpha <= 1 && forceAlpha >= 0);
 
-            Vector3 absoluteForce = direction * MaxKickForce * force;
+            Vector3 absoluteForce = direction * MaxKickForce * forceAlpha;
             KickAbsoulte(absoluteForce);
         }
         public void KickAbsoulte(Vector3 force)
