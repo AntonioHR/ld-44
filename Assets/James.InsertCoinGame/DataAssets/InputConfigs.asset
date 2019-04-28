@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 999994dee097cf74ba0be0ddcec101b9, type: 3}
   m_Name: InputConfigs
   m_EditorClassIdentifier: 
+  useRawAxis: 0
+  KickKey: 330

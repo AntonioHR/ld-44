@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5888018641634493719}
   - component: {fileID: 7701559478763820064}
   - component: {fileID: 8545825532868642034}
+  - component: {fileID: 577160307773661113}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -123,6 +124,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &577160307773661113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2950885151768841303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea161bb5872ef4f44b4b335abdeb507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 4129813723641324289}
 --- !u!1 &8891398486144608355
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1257316400269598196}
   - component: {fileID: 3677795890297934275}
+  - component: {fileID: 4129813723641324289}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -171,3 +186,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4129813723641324289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8891398486144608355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e067ca8805b252498a03c7aa5c09662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KickForce: 5
+  body: {fileID: 3677795890297934275}
