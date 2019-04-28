@@ -28,7 +28,7 @@ namespace James.InsertCoinGame.Ingame.BlackHoles
         public int DebugCoins { get { return coinsDetector == null ? 0 : coinsDetector.CurrentObjects.Count(); } }
         #endregion
 
-        private void Start()
+        private void Awake()
         {
             coinsDetector = new CheckForObjects<Coin>(notifier);
             coinsDetector.ObjectEntered += OnCoinEntered;
@@ -39,12 +39,12 @@ namespace James.InsertCoinGame.Ingame.BlackHoles
 
         private void OnCoinLeft(Coin coin)
         {
-            throw new NotImplementedException();
+            coin.RemoveBlackhole(this);
         }
 
         private void OnCoinEntered(Coin coin)
         {
-            throw new NotImplementedException();
+            coin.AddBlachHole(this);
         }
 
         private void OnValidate()
@@ -63,19 +63,12 @@ namespace James.InsertCoinGame.Ingame.BlackHoles
                 collider.radius = radius;
         }
 
-        private void Update()
+        public Vector3 GetPullFor(Coin coin)
         {
-            //foreach (var coin in coinsDetector.CurrentObjects)
-            //{
-            //    Pull(coin);
-            //}
-        }
+            var direction = transform.position - coin.transform.position;
+            direction.Normalize();
 
-        //private void Pull(Coin coin)
-        //{
-        //    var pullDirection = transform.position - coin.transform.position;
-        //    pullDirection.Normalize();
-        //    coin.SetPull(force * pullDirection);
-        //}
+            return direction * force;
+        }
     }
 }
