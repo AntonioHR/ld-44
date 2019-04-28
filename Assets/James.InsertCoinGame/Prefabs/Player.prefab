@@ -104,6 +104,8 @@ GameObject:
   - component: {fileID: 792383317620689968}
   - component: {fileID: 8029056786472442245}
   - component: {fileID: 165501824077960227}
+  - component: {fileID: 2019309577315993158}
+  - component: {fileID: 3019673440678114820}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -169,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7316e16306a546a489c2e2e6354305a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement: {fileID: 165501824077960227}
 --- !u!114 &165501824077960227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +182,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2a1ced444384d14586dcf788ec2f74f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 2019309577315993158}
+  canWalk: 0
+--- !u!143 &2019309577315993158
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4461037038393559268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 0.92
+  m_Radius: 0.25
+  m_SlopeLimit: 0
+  m_StepOffset: 0
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &3019673440678114820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4461037038393559268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6588ad0344e54c745b7579bc0138b04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6323623819738164328
@@ -301,7 +336,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 6327996786961431410}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1

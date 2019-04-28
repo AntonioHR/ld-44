@@ -14,6 +14,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         {
             Container.Bind<Player>().AsSingle();
             Container.Bind<PlayerBody>().FromInstance(body);
+            Container.Bind<Player.Fsm>().AsSingle();
         }
     }
 }

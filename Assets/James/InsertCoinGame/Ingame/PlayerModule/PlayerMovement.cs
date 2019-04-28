@@ -11,6 +11,11 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
 {
     public class PlayerMovement : MonoBehaviour
     {
+        [SerializeField]
+        private CharacterController controller;
+        [SerializeField]
+        private bool canWalk;
+
         private InsertCoinInput input;
         private PlayerConfigs configs;
 
@@ -21,10 +26,28 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
             this.configs = configs;
         }
 
-
+        public void DisableWalk()
+        {
+            canWalk = false;
+        }
+        public void EnableWalk()
+        {
+            canWalk = true;
+        }
         private void Update()
         {
-            transform.position += input.MovementInIso * Time.deltaTime * configs.MoveSpeed;
+            Vector3 speed;
+            if (canWalk)
+            {
+                speed = input.MovementInIso.normalized * configs.MoveSpeed;
+            } else
+            {
+                speed = Vector3.zero;
+            }
+
+            transform.rotation = Quaternion.FromToRotation(Vector3.forward, input.MovementInIso);
+
+            controller.SimpleMove(speed);
         }
     }
 }

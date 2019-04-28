@@ -11,5 +11,7 @@ namespace James.InsertCoinGame.Ingame.InputModule
     public class InputConfigs : ScriptableObject
     {
         public bool useRawAxis = true;
+        
+        public KeyCode KickKey = KeyCode.Space;
     }
 }

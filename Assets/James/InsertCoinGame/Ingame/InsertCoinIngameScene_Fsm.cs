@@ -59,7 +59,6 @@ namespace James.InsertCoinGame.Ingame
                 {
                     StartTransition();
                 }
-
             }
 
             private void StartTransition()

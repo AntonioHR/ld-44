@@ -23,5 +23,8 @@ namespace James.InsertCoinGame.Ingame.InputModule
 
         public Vector3 MovementSimple { get { return new Vector3(HorInput, 0, VertInput); } }
         public Vector3 MovementInIso { get { return Quaternion.AngleAxis(45, Vector3.up) * MovementSimple; } }
+
+        public bool KickDown { get { return Input.GetKeyDown(configs.KickKey); } }
+        public bool KickUp { get { return Input.GetKeyUp(configs.KickKey); } }
     }
 }
