@@ -1,4 +1,5 @@
 ﻿using James.InsertCoinGame.Ingame.Coins;
+using James.InsertCoinGame.Ingame.InputModule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,16 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
     {
         private PlayerBody body;
         private Fsm fsm;
+        private PlayerConfigs configs;
 
         private CheckForObjects<Coin> coinChecker;
         public int CoinsCount { get { return coinChecker.CurrentObjects.Count(); } }
 
-        public Player(PlayerBody body, Fsm fsm)
+        public Player(PlayerBody body, Fsm fsm, PlayerConfigs configs)
         {
             this.body = body;
             this.fsm = fsm;
+            this.configs = configs;
         }
         [Inject]
         private void Init()
@@ -36,6 +39,11 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         public void OnKickUp()
         {
             fsm.OnKickUp();
+        }
+
+        public void Tick()
+        {
+            fsm.Update();
         }
     }
 

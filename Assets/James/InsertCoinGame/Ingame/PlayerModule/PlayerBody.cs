@@ -12,6 +12,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
 {
     public class PlayerBody : MonoBehaviour
     {
+        [Inject]
         private Player owner;
 
         [SerializeField]
@@ -19,7 +20,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         [SerializeField]
         Transform feet;
         [SerializeField]
-        private CanvasGroup canvasGroup;
+        private KickIndicator kickIndicator;
         [SerializeField]
         private TriggerNotifier kickArea;
 
@@ -27,21 +28,13 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         public PlayerMovement Movement { get { return movement; } }
 
         public TriggerNotifier KickArea { get { return kickArea; } }
+        public KickIndicator KickIndicator { get => kickIndicator; }
 
-        [Inject]
-        public void Inject(Player owner)
+        private void Update()
         {
-            this.owner = owner;
+            owner.Tick();
         }
 
-        public void ShowKickUi()
-        {
-            canvasGroup.DOFade(1, .3f);
-        }
-        public void HideKickUi()
-        {
-            canvasGroup.DOFade(0, .3f);
-        }
 
         public void PerformKickAnimation(TweenCallback kickCallback)
         {
@@ -50,6 +43,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         #region Debug
         [ShowNativeProperty]
         public int CoinCount { get { return owner == null ? 0 : owner.CoinsCount; } }
+
         #endregion
     }
 }

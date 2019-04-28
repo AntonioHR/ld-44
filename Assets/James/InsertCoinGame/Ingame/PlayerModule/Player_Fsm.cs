@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AntonioHR.Utils;
+using James.InsertCoinGame.Ingame.InputModule;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
 {
     public partial class Player
     {
+
         public class Fsm : StateMachine<State, Player>
         {
             public override State StartingState => new IdleState();
@@ -28,6 +31,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         public abstract class State : State<State, Player>
         {
             protected PlayerBody Body { get { return Context.body; } }
+            protected PlayerConfigs Configs { get { return Context.configs; } }
             public virtual void OnKickDown() { }
             public virtual void OnKickUp() { }
 
@@ -53,25 +57,38 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         }
         public class KickPrepareState : State
         {
+            Stopwatch stopwatch;
             protected override void Begin()
             {
+                stopwatch = Stopwatch.CreateAndStart();
                 Body.Movement.DisableWalk();
-                Body.ShowKickUi();
             }
             public override void OnKickUp()
             {
-                Body.HideKickUi();
+                Body.KickIndicator.Hide();
                 Vector3 direction = Body.Movement.LookDirection;
-                ChangeState(new KickState(Body.Movement.LookDirection));
+                ChangeState(new KickState(Body.Movement.LookDirection, GetKickForce()));
+            }
+            protected override void Update()
+            {
+                Body.KickIndicator.ShowKick(GetKickForce());
+            }
+            private float GetKickForce()
+            {
+                float lerp = Mathf.InverseLerp(0, Configs.KickLoadTime, stopwatch.ElapsedSeconds);
+                lerp = Configs.kickCurve.Evaluate(lerp);
+                return Mathf.Lerp(Configs.KickMin, 1, lerp);
             }
         }
         private class KickState : State
         {
+            private float force;
             private Vector3 direction;
 
-            public KickState(Vector3 direction)
+            public KickState(Vector3 direction, float force)
             {
                 this.direction = direction;
+                this.force = force;
             }
 
             protected override void Begin()
@@ -91,7 +108,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
                 var coins = Context.coinChecker.CurrentObjects;
                 foreach (var coin in coins)
                 {
-                    coin.Kick(direction);
+                    coin.Kick(direction, force);
                 }
             }
 

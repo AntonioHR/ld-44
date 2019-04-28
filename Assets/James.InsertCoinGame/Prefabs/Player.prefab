@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 857220985479905386}
   - component: {fileID: 5598483495602425218}
+  - component: {fileID: 1332469084945500004}
   - component: {fileID: 7255195675593881577}
   - component: {fileID: 1752163779964830623}
   m_Layer: 0
-  m_Name: Image
+  m_Name: KickIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +47,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292880646237138433}
   m_CullTransparentMesh: 0
+--- !u!114 &1332469084945500004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292880646237138433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4841fb8923cd2a94c968765d00172ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 1752163779964830623}
+  img: {fileID: 7255195675593881577}
 --- !u!114 &7255195675593881577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 165501824077960227}
   feet: {fileID: 6975999146286643106}
-  canvasGroup: {fileID: 1752163779964830623}
+  kickIndicator: {fileID: 1332469084945500004}
   kickArea: {fileID: 4978602309864007113}
 --- !u!114 &165501824077960227
 MonoBehaviour:

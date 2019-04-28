@@ -12,7 +12,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         public PlayerBody body;
         public override void InstallBindings()
         {
-            Container.Bind<Player>().AsSingle();
+            Container.BindInterfacesAndSelfTo<Player>().AsSingle();
             Container.Bind<PlayerBody>().FromInstance(body);
             Container.Bind<Player.Fsm>().AsSingle();
         }

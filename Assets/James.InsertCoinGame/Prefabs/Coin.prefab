@@ -198,5 +198,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e067ca8805b252498a03c7aa5c09662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KickForce: 5
+  MaxKickForce: 10
   body: {fileID: 3677795890297934275}

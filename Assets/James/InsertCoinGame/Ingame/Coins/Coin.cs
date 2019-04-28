@@ -11,16 +11,19 @@ namespace James.InsertCoinGame.Ingame.Coins
     public class Coin : MonoBehaviour
     {
         [SerializeField]
-        private float KickForce;
+        private float MaxKickForce = 10;
         [SerializeField]
         private Rigidbody body;
         private bool kicked;
 
         List<BlackHole> blackHoles = new List<BlackHole>();
 
-        public void Kick(Vector3 direction)
+        public void Kick(Vector3 direction, float force)
         {
-            body.AddForce(direction * KickForce, ForceMode.Impulse);
+            Debug.LogFormat("KickForce: {0}", force);
+            Debug.Assert(force <= 1 && force >= 0);
+
+            body.AddForce(direction * MaxKickForce * force, ForceMode.Impulse);
             kicked = true;
             this.WaitUntilThenDo(() => body.velocity.magnitude < 0.001f, OnKickOver);
             //this.WaitThenDo(.5f, OnKickOver);
