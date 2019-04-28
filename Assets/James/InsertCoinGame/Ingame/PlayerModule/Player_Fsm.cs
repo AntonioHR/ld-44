@@ -132,17 +132,18 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
 
             private bool CanHit(Coin c)
             {
-                var kickPos = Body.KickArea.transform.position;
-                var delta = c.transform.position - kickPos;
-                if(Physics.Raycast(kickPos,delta, out RaycastHit hit))
-                {
+                return true;
+                //var kickPos = Body.KickArea.transform.position;
+                //var delta = c.transform.position - kickPos;
+                //if(Physics.Raycast(kickPos,delta, out RaycastHit hit))
+                //{
 
-                    bool result = hit.collider.GetComponentInParent<Coin>() == c;
-                    if (result)
-                        Debug.LogWarningFormat(hit.collider.gameObject, "Couldn't kick coin. Hit {0} instead", hit.collider);
-                    return result;
-                }
-                return false;
+                //    bool result = hit.collider.GetComponentInParent<Coin>() == c;
+                //    if (result)
+                //        Debug.LogWarningFormat(hit.collider.gameObject, "Couldn't kick coin. Hit {0} instead", hit.collider);
+                //    return result;
+                //}
+                //return false;
             }
 
             protected override void End()
