@@ -14,16 +14,41 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         [SerializeField]
         private CanvasGroup canvasGroup;
         [SerializeField]
-        private Image img;
+        private Image bar;
+        [SerializeField]
+        private Image core;
+
+        Vector3 color;
+        Vector3 colorDampVel;
+
+        bool hidden = true;
         public void Hide()
         {
+            hidden = true;
             canvasGroup.DOFade(0, .3f);
+            color = Vector3.one;
         }
         public void ShowKick(float t)
         {
-            img.color = t >= 1 ? Color.red : Color.white;
-            canvasGroup.alpha = t;
+            if (hidden)
+                canvasGroup.DOFade(1, .3f);
+            hidden = false;
 
+            bar.fillAmount = t;
+            if(t > .99f)
+            {
+                DampIndicatorColorTo(Vector3.right);
+            } else
+            {
+                DampIndicatorColorTo(Vector3.one);
+            }
+
+        }
+
+        private void DampIndicatorColorTo(Vector3 target)
+        {
+            color = Vector3.SmoothDamp(color, target, ref colorDampVel, .3f);
+            core.color = new Color(color.x, color.y, color.z);
         }
     }
 }
