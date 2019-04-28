@@ -7,18 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TonhoHR.StateMachines;
+using TonhoHR.Utils;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace James.InsertCoinGame.Ingame
 {
     public partial class InsertCoinIngameScene
     {
+
         public class Fsm : StateMachine<State, InsertCoinIngameScene>
         {
             public override State StartingState => new SceneStartState();
 
-            internal void OnCoinCollected()
+            public void OnCoinCollected()
             {
                 CurrentState.OnCoinCollected();
             }
@@ -70,8 +73,28 @@ namespace James.InsertCoinGame.Ingame
             {
                 Debug.Log("Started Scene");
             }
+            public override void OnCoinCollected()
+            {
+                if(Context.Coins >= Context.maxCoins)
+                {
+                    ChangeState(new YouLoseState());
+                }
+            }
         }
 
+
+        private class YouLoseState : State
+        {
+            protected override void Begin()
+            {
+                Context.ui.RunLoseSequence(Reset);
+            }
+            private void Reset()
+            {
+                Context.WaitUntilThenDo(()=>Context.input.PressedStart, ()=>SceneManager.LoadScene(0));
+
+            }
+        }
 
         public static void BindAllStateFactories(DiContainer container)
         {

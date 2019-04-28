@@ -19,7 +19,9 @@ namespace James.InsertCoinGame.Ingame
 
         Fsm fsm;
         Player player;
-        private int coins;
+        public int Coins { get; private set; }
+        [SerializeField]
+        private int maxCoins = 10;
         [Inject]
         private InsertCoinInput input;
         [Inject]
@@ -47,9 +49,9 @@ namespace James.InsertCoinGame.Ingame
 
         public void CollectCoin()
         {
-            coins++;
+            Coins++;
             if (CoinCollect != null)
-                CoinCollect(coins);
+                CoinCollect(Coins);
 
             fsm.OnCoinCollected();
         }

@@ -9,7 +9,9 @@ namespace James.InsertCoinGame.Ingame.Ui
     public class InsertCoinUI : MonoBehaviour
     {
         [SerializeField]
-        private CanvasGroup rootCanvasGroup;
+        private CanvasGroup startCanvasGroup;
+        [SerializeField]
+        private CanvasGroup endCanvasGroup;
         [SerializeField]
         private CanvasGroup dialogueGroup;
         [SerializeField]
@@ -26,6 +28,7 @@ namespace James.InsertCoinGame.Ingame.Ui
         [SerializeField]
         private Sprite[] coinSprites;
         private Tweener titleTween;
+
 
         private void Awake()
         {
@@ -67,9 +70,14 @@ namespace James.InsertCoinGame.Ingame.Ui
                 coinImg.enabled = true;
                 coinImg.AnimateImageOnce(coinSprites, .2f, () =>
                 {
-                    rootCanvasGroup.DOFade(0, .5f).SetDelay(.7f).OnComplete(callback);
+                    startCanvasGroup.DOFade(0, .5f).SetDelay(.7f).OnComplete(callback);
                 });
             });
+        }
+
+        public void RunLoseSequence(TweenCallback reset)
+        {
+            endCanvasGroup.DOFade(1, .5f).OnComplete(reset);
         }
     }
 }
