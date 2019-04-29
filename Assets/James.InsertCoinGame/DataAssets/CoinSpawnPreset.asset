@@ -15,4 +15,4 @@ MonoBehaviour:
   interval: 4
   spawnVector: {x: 0, y: 0, z: 1}
   startingKick: 5
-  arc: 90
+  arc: 0

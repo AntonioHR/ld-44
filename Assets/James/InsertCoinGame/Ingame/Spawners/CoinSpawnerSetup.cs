@@ -12,7 +12,8 @@ namespace James.InsertCoinGame.Ingame.Spawners
     {
         public float interval = 1;
         public Vector3 spawnVector = new Vector3(0, 0, 1);
-        public float startingKick = 2;
+        public float startingKickMin = 1;
+        public float startingKickMax = 5;
         public float arc = 90;
     }
 }

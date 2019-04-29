@@ -44,7 +44,8 @@ namespace James.InsertCoinGame.Ingame.Spawners
 
             Coin c = Instantiate(prefab, coinsParent != null? coinsParent: transform.parent);
             c.transform.position = spawnPoint.position;
-            c.KickAbsoulte(impulseDirection * configs.startingKick);
+            float impulseForce = UnityEngine.Random.Range(configs.startingKickMin, configs.startingKickMax);
+            c.KickAbsoulte(impulseDirection * impulseForce);
         }
 
         private Vector3 GenerateImpulseDirection()
