@@ -322,9 +322,7 @@ MonoBehaviour:
   startText:
   - Nooooooooooo!
   - "I don't want \nto play anymore"
-  - 'I won''t let those
-
-    coins go in'
+  - "I won't let those \ncoins go in"
   coinImg: {fileID: 5559097480196114044}
   coinSprites:
   - {fileID: 21300000, guid: 7fa7fa2dd07bc654699f119f24aceff5, type: 3}
