@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5706255947578086370}
   - component: {fileID: 3719998803700576594}
   m_Layer: 0
-  m_Name: coin-hit-ground-2
+  m_Name: game-over-sigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,9 +41,9 @@ AudioSource:
   m_GameObject: {fileID: 3765475718963922487}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243233913724693808, guid: 55b2b15d30beb4b48b98496b9a6f5583,
+  OutputAudioMixerGroup: {fileID: 243042709285606626, guid: 55b2b15d30beb4b48b98496b9a6f5583,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 60b7ff7f4f1eac940823ff453b4ea385, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 55c383e03f462be44b8de7b74c65587d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
