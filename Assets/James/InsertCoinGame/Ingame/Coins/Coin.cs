@@ -23,6 +23,8 @@ namespace James.InsertCoinGame.Ingame.Coins
         private Transform unitsParent;
         [SerializeField]
         private CoinUnit unitPrefab;
+
+
         [SerializeField]
         private float resistanceAtTwo = 15;
         [SerializeField]
@@ -235,6 +237,11 @@ namespace James.InsertCoinGame.Ingame.Coins
                 seq.Insert(0, collect);
             }
             seq.OnComplete(Consume);
+        }
+        internal void OnHitWell()
+        {
+            consumed = true;
+            Destroy(gameObject, 5);
         }
     }
 }
