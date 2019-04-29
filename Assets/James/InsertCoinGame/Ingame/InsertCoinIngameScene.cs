@@ -28,6 +28,8 @@ namespace James.InsertCoinGame.Ingame
         private InsertCoinUI ui;
         [SerializeField]
         private UnityEvent GameStartedEvent;
+        [SerializeField]
+        private UnityEvent CoinCollected;
 
         public bool HasGameStarted { get; private set; }
 
@@ -52,6 +54,7 @@ namespace James.InsertCoinGame.Ingame
             Coins++;
             if (CoinCollect != null)
                 CoinCollect(Coins);
+            CoinCollected.Invoke();
 
             fsm.OnCoinCollected();
         }

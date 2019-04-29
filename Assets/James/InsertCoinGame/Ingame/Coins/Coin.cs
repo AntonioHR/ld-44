@@ -7,6 +7,7 @@ using James.InsertCoinGame.Ingame.BlackHoles;
 using TonhoHR.ObjectCheckers;
 using TonhoHR.Utils;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace James.InsertCoinGame.Ingame.Coins
 {
@@ -34,6 +35,7 @@ namespace James.InsertCoinGame.Ingame.Coins
 
         [SerializeField]
         private float breakTime = .3f;
+        bool didFirstFall = false;
 
         private float MaxKickResisted
         {
@@ -65,6 +67,8 @@ namespace James.InsertCoinGame.Ingame.Coins
         private CheckForObjects<Coin> coinsCheck;
         [SerializeField]
         private float fallForceAlpha = .7f;
+        [SerializeField]
+        private UnityEvent HitGroundEvent;
 
         private void Awake()
         {
@@ -112,6 +116,7 @@ namespace James.InsertCoinGame.Ingame.Coins
             Debug.LogFormat("KickForce: {0}", forceAlpha);
             Debug.Assert(forceAlpha <= 1 && forceAlpha >= 0);
 
+            direction += Vector3.up * .2f;
             Vector3 absoluteForce = direction * MaxKickForce * forceAlpha;
             KickAbsoulte(absoluteForce);
         }
@@ -128,9 +133,20 @@ namespace James.InsertCoinGame.Ingame.Coins
                 float t = Mathf.Lerp(breakTime, .05f, delta);
                 this.WaitThenDo(t, Explode);
             }
+
+
+            this.WaitUntilThenDo(() => body.velocity.magnitude < 2f, HitGroundTrigger, skipFirstFrame: true, skipMode: CoroutineUtils.SkipMode.FixedUpdate);
             this.WaitUntilThenDo(() => body.velocity.magnitude < 0.001f, OnKickOver, skipFirstFrame: true, skipMode:CoroutineUtils.SkipMode.FixedUpdate);
             CheckKicks();
         }
+
+        private void HitGroundTrigger()
+        {
+            if (!consumed && !didFirstFall)
+                HitGroundEvent.Invoke();
+            didFirstFall = true;
+        }
+
         private void CheckKicks()
         {
             foreach (var coin in coinsCheck.CurrentObjects)
