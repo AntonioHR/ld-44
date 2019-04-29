@@ -51,7 +51,7 @@ namespace TonhoHR.Utils
 
             return img.StartCoroutine(img.DOAnimateImageOnce(sprites, timePerSprite, callback));
         }
-        public static IEnumerator DOAnimateImageOnce(this Image img, Sprite[] sprites, float timePerSprite, Action callback)
+        private static IEnumerator DOAnimateImageOnce(this Image img, Sprite[] sprites, float timePerSprite, Action callback)
         {
             for (int i = 0; i < sprites.Length; i++)
             {

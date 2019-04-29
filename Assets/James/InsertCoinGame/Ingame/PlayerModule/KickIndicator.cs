@@ -42,7 +42,6 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
             {
                 DampIndicatorColorTo(Vector3.one);
             }
-
         }
 
         private void DampIndicatorColorTo(Vector3 target)

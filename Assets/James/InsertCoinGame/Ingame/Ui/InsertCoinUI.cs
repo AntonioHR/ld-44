@@ -27,6 +27,12 @@ namespace James.InsertCoinGame.Ingame.Ui
         private Image coinImg;
         [SerializeField]
         private Sprite[] coinSprites;
+        [SerializeField]
+        private Image endOverlay;
+        [SerializeField]
+        private Image playerImg;
+        [SerializeField]
+        private Sprite[] playerSprites;
         private Tweener titleTween;
 
 
@@ -76,9 +82,17 @@ namespace James.InsertCoinGame.Ingame.Ui
             });
         }
 
-        public void RunLoseSequence(TweenCallback reset)
+        public void RunLoseSequence(TweenCallback endCallback)
         {
-            endCanvasGroup.DOFade(1, .5f).OnComplete(reset);
+            endCanvasGroup.DOFade(1, .1f).OnComplete(() =>
+            {
+                playerImg.AnimateImageOnce(playerSprites, .5f, () =>
+                {
+                    endOverlay.DOFade(1, 2).SetEase(EaseFactory.StopMotion(3)).OnComplete(endCallback);
+                });
+            });
+
+
         }
     }
 }
