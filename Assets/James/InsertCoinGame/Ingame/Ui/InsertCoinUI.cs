@@ -2,6 +2,7 @@
 using System;
 using TonhoHR.Utils;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace James.InsertCoinGame.Ingame.Ui
@@ -34,7 +35,12 @@ namespace James.InsertCoinGame.Ingame.Ui
         [SerializeField]
         private Sprite[] playerSprites;
         private Tweener titleTween;
-
+        [SerializeField]
+        private UnityEvent dialogueStart;
+        [SerializeField]
+        private UnityEvent startSequenceStart;
+        [SerializeField]
+        private UnityEvent coinAppeared;
 
         private void Awake()
         {
@@ -49,6 +55,7 @@ namespace James.InsertCoinGame.Ingame.Ui
 
         public void PerformStartSequence(TweenCallback callback)
         {
+            startSequenceStart.Invoke();
             titleTween.Complete();
             titleTween.Kill();
             var c = titleInsert.color;
@@ -60,6 +67,7 @@ namespace James.InsertCoinGame.Ingame.Ui
             seq.Append(FlashText(.05f));
             seq.Append(FlashText(.05f));
             seq.AppendInterval(.5f);
+            seq.AppendCallback(dialogueStart.Invoke);
             seq.Append(dialogueGroup.DOFade(1, .05f));
             bool inLoop = false;
             foreach (var str in startText)
@@ -75,6 +83,8 @@ namespace James.InsertCoinGame.Ingame.Ui
             seq.AppendCallback(() =>
             {
                 coinImg.enabled = true;
+
+                coinAppeared.Invoke();
                 coinImg.AnimateImageOnce(coinSprites, .2f, () =>
                 {
                     startCanvasGroup.DOFade(0, .5f).SetDelay(.7f).OnComplete(callback);

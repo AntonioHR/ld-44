@@ -69,6 +69,8 @@ namespace James.InsertCoinGame.Ingame.Coins
         private float fallForceAlpha = .7f;
         [SerializeField]
         private UnityEvent HitGroundEvent;
+        [SerializeField]
+        private UnityEvent JointWithOtherStackEvent;
 
         private void Awake()
         {
@@ -166,6 +168,7 @@ namespace James.InsertCoinGame.Ingame.Coins
             {
                 SpawnUnit();
             }
+            JointWithOtherStackEvent.Invoke();
             AnimateHit();
         }
         private void SpawnUnit()

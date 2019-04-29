@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 namespace James.InsertCoinGame.Ingame.PlayerModule
@@ -25,6 +26,8 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
         private TriggerNotifier kickArea;
         [SerializeField]
         private Animator animator;
+        [SerializeField]
+        private UnityEvent OnKick;
 
         public Animator Animator { get { return animator; } }
 
@@ -42,6 +45,7 @@ namespace James.InsertCoinGame.Ingame.PlayerModule
 
         public void PerformKickAnimation(TweenCallback kickCallback)
         {
+            OnKick.Invoke();
             feet.DOPunchPosition(Vector3.forward * .5f, .5f, 0, 0).OnComplete(kickCallback);
         }
         #region Debug
