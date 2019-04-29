@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: InputConfigs
   m_EditorClassIdentifier: 
   useRawAxis: 0
-  KickKey: 330
+  KickKeys: 200000004a0100004b0100004c0100004d010000430100001b000000
