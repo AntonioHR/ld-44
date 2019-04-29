@@ -321,7 +321,10 @@ MonoBehaviour:
   titleInsert: {fileID: 1734544171515617490}
   startText:
   - Nooooooooooo!
-  - Not Again!!
+  - "I don't want \nto play anymore"
+  - 'I won''t let those
+
+    coins go in'
   coinImg: {fileID: 5559097480196114044}
   coinSprites:
   - {fileID: 21300000, guid: 7fa7fa2dd07bc654699f119f24aceff5, type: 3}
@@ -532,10 +535,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: d753e05e31e913f4db8b05ee34677c1a, type: 3}
-    m_FontSize: 30
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 60
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -635,7 +638,7 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: 0
   m_MinHeight: -1
-  m_PreferredWidth: -1
+  m_PreferredWidth: 250
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
