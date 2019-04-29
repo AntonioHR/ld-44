@@ -87,6 +87,7 @@ namespace James.InsertCoinGame.Ingame
         {
             protected override void Begin()
             {
+                Context.GameOverEvent.Invoke();
                 Context.ui.RunLoseSequence(Reset);
             }
             private void Reset()

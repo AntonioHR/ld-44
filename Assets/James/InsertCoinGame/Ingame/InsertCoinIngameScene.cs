@@ -29,6 +29,8 @@ namespace James.InsertCoinGame.Ingame
         [SerializeField]
         private UnityEvent GameStartedEvent;
         [SerializeField]
+        private UnityEvent GameOverEvent;
+        [SerializeField]
         private UnityEvent CoinCollected;
 
         public bool HasGameStarted { get; private set; }
